@@ -17,44 +17,106 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MENU UTAMA</li>
-      <li class="<?php if ($this->uri->segment(1) == 'admin') {
-                    echo 'active';
-                  } ?>">
-        <a href="<?= site_url('admin'); ?>">
-          <i class="fa fa-home"></i> <span>Home</span>
-        </a>
-      </li>
-      <li class="<?php if ($this->uri->segment(1) == 'data-guru' || $this->uri->segment(2) == 'add-guru') {
-                    echo 'active';
-                  } ?>">
-        <a href="<?= site_url('data-guru'); ?>">
-          <i class="fa fa-user"></i>
-          <span>Data Guru</span>
-        </a>
-      </li>
-      <li class="<?php if ($this->uri->segment(1) == 'data-siswa' || $this->uri->segment(2) == 'add-siswa') {
-                    echo 'active';
-                  } ?>">
-        <a href="<?= site_url('data-siswa'); ?>">
-          <i class="fa fa-users"></i> <span>Data Siswa</span>
-        </a>
-      </li>
-      <li class="<?php if ($this->uri->segment(1) == 'data-sekretaris') {
-                    echo 'active';
-                  } ?>">
-        <a href="<?= site_url('data-sekretaris'); ?>">
-          <i class="fa fa-sticky-note"></i>
-          <span>Data Sekretaris</span>
-        </a>
-      </li>
-      <li class="<?php if ($this->uri->segment(1) == 'data-rekap') {
-                    echo 'active';
-                  } ?>">
-        <a href="<?= site_url('data-rekap'); ?>">
-          <i class="fa fa-files-o"></i>
-          <span>Data Rekap</span>
-        </a>
-      </li>
+      <?php if ($userdataTipe == 99) : ?>
+        <li class="<?php if ($this->uri->segment(1) == 'admin') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('admin'); ?>">
+            <i class="fa fa-home"></i> <span>Home</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(1) == 'data-guru' || $this->uri->segment(2) == 'add-guru') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('data-guru'); ?>">
+            <i class="fa fa-user"></i>
+            <span>Data Guru</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(1) == 'data-siswa' || $this->uri->segment(2) == 'add-siswa') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('data-siswa'); ?>">
+            <i class="fa fa-users"></i> <span>Data Siswa</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(1) == 'data-sekretaris') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('data-sekretaris'); ?>">
+            <i class="fa fa-sticky-note"></i>
+            <span>Data Sekretaris</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(1) == 'data-rekap') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('data-rekap'); ?>">
+            <i class="fa fa-files-o"></i>
+            <span>Data Rekap</span>
+          </a>
+        </li>
+      <?php endif; ?>
+
+      <!-- guru -->
+      <?php if ($userdataTipe == 88) : ?>
+        <li class="<?php if ($this->uri->segment(1) == 'guru') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('guru'); ?>">
+            <i class="fa fa-home"></i> <span>Home</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(2) == 'data-siswa' || $this->uri->segment(3) == 'add-siswa') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('gr/data-siswa'); ?>">
+            <i class="fa fa-users"></i> <span>Data Siswa</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(2) == 'data-sekretaris') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('gr/data-sekretaris'); ?>">
+            <i class="fa fa-sticky-note"></i>
+            <span>Data Sekretaris</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(2) == 'data-rekap') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('gr/data-rekap'); ?>">
+            <i class="fa fa-files-o"></i>
+            <span>Data Rekap</span>
+          </a>
+        </li>
+      <?php endif; ?>
+
+      <!-- sekretaris -->
+      <?php if ($userdataTipe == 77) : ?>
+        <li class="<?php if ($this->uri->segment(1) == 'sekretaris') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('sekretaris'); ?>">
+            <i class="fa fa-home"></i> <span>Home</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(2) == 'data-siswa' || $this->uri->segment(3) == 'add-siswa') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('sk/data-siswa'); ?>">
+            <i class="fa fa-users"></i> <span>Data Siswa</span>
+          </a>
+        </li>
+        <li class="<?php if ($this->uri->segment(2) == 'data-rekap') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('sk/data-rekap'); ?>">
+            <i class="fa fa-files-o"></i>
+            <span>Data Rekap</span>
+          </a>
+        </li>
+      <?php endif; ?>
     </ul>
   </section>
   <!-- /.sidebar -->

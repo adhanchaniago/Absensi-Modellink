@@ -63,5 +63,18 @@ $route['add-siswa'] = 'admin/DataSiswa/addSiswa';
 $route['data-sekretaris'] = 'admin/DataSekretaris';
 $route['data-rekap'] = 'admin/DataRekap';
 
+//guru
+$route['guru'] = 'guru/home';
+$route['gr/data-siswa'] = 'guru/DataSiswa';
+$route['gr/add-siswa'] = 'guru/DataSiswa/addSiswa';
+$route['gr/data-sekretaris'] = 'guru/DataSekretaris';
+$route['gr/data-rekap'] = 'guru/DataRekap';
+
+//sekretaris
+$route['sekretaris'] = 'sekretaris/home';
+$route['sk/data-siswa'] = 'sekretaris/DataSiswa';
+$route['sk/add-siswa'] = 'sekretaris/DataSiswa/addSiswa';
+$route['sk/data-rekap'] = 'sekretaris/DataRekap';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -1,6 +1,13 @@
 <?php
-if ($this->session->userdata('tipe') == 99) {
+$userdataTipe = $this->session->userdata('tipe');
+if ($userdataTipe == 99) {
   $site = site_url('admin');
+}
+if ($userdataTipe == 88) {
+  $site = site_url('guru');
+}
+if ($userdataTipe == 77) {
+  $site = site_url('sekretaris');
 }
 ?>
 
@@ -51,7 +58,15 @@ if ($this->session->userdata('tipe') == 99) {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-yellow sidebar-mini">
+<body class="hold-transition <?php if ($userdataTipe == 99) {
+                                echo 'skin-yellow';
+                              }
+                              if ($userdataTipe == 88) {
+                                echo 'skin-purple';
+                              }
+                              if ($userdataTipe == 77) {
+                                echo 'skin-red-light';
+                              } ?> sidebar-mini">
   <!-- jQuery 3 -->
   <script src="<?= base_url() ?>assets/backend/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
