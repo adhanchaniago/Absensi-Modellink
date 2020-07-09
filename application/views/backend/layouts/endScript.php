@@ -1,4 +1,5 @@
 </div>
+<script src="<?= base_url() ?>assets/backend/bower_components/sweetalert/sweetalert.min.js"></script>
 <!-- Morris.js charts -->
 <script src="<?= base_url() ?>assets/backend/bower_components/raphael/raphael.min.js"></script>
 <script src="<?= base_url() ?>assets/backend/bower_components/morris.js/morris.min.js"></script>
