@@ -1,12 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="<?= $site; ?>" class="logo">
-    <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>AB</b>M</span>
-    <!-- logo for regular state and mobile devices -->
-    <!-- <img src="<?= base_url() ?>assets/gambar/logo/logo.png" class="" style="max-width:50%;"> -->
-    <span class="logo-lg">Absensi Modellink</span>
-  </a>
+
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
     <!-- Sidebar toggle button-->

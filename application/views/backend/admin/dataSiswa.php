@@ -1,7 +1,7 @@
 <section class="content">
   <div class="box box-danger">
     <div class="box-header with-border">
-      <h3 class="box-title">Input Data Siswa</h3>
+      <h3 class="box-title">Input Siswa dan Data Siswa</h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -39,11 +39,9 @@
         <div class="col-sm-10">
           <select class="form-control" name="agama">
             <option value="" selected hidden>--Pilih Agama--</option>
-            <option value="1">Islam</option>
-            <option value="2">Kristen Protestan</option>
-            <option value="3">Katolik</option>
-            <option value="4">Hindu</option>
-            <option value="5">Budha</option>
+            <?php foreach ($agama as $val) : ?>
+              <option value="<?= $val->id_agama ?>"><?= $val->agama; ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
       </div>
@@ -72,17 +70,6 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="status" class=" col-sm-2">Status</label>
-        <div class="container row">
-          <div class="col-sm-2">
-            <input type="radio" name="status" value="PNS"> PNS
-          </div>
-          <div class="col-sm-2">
-            <input type="radio" name="status" vlaue="Honorer"> Honorer
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
         <div class="col-sm-12">
           <div class="col-sm-2 pull-right">
             <a class="btn btn-success btn-block" id="save">Simpan <i class="fa fa-send"></i></a>
@@ -92,22 +79,8 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-      Command
-    </div>
-  </div>
-
-  <!-- ============================= -->
-
-  <div class="box box-warning">
-    <div class="box-header with-border">
-      <h3 class="box-title">Data Siswa</h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-      </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
+      <h4>Data Siswa</h4>
+      <hr>
       <table class="table table-hover table-striped" id="dataSiswa">
         <thead>
           <th>No.</th>
@@ -123,6 +96,22 @@
         </thead>
       </table>
     </div>
+  </div>
+
+  <!-- ============================= -->
+
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <h3 class="box-title">Data Siswa</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+
+    </div>
     <!-- /.box-body -->
     <div class="box-footer">
       Command
@@ -132,5 +121,9 @@
 <script>
   $(function() {
     $('#dataSiswa').DataTable();
+  });
+
+  $("#nis").inputFilter(function(value) {
+    return /^\d*$/.test(value) && (value === "" || parseInt(value.length) <= 10);
   });
 </script>

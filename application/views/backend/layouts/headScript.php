@@ -79,4 +79,12 @@ if ($userdataTipe == 77) {
   <script src="<?= base_url() ?>assets/backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- datepicker -->
   <script src="<?= base_url() ?>assets/backend/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <script src="<?= base_url() ?>assets/backend/own/inputFilter.js"></script>
+  <script src="<?= base_url() ?>assets/backend/own/jquery.validation.js"></script>
+  <script src="<?= base_url() ?>assets/backend/own/additional-methods.js"></script>
+  <!-- Datatables -->
+  <script src="<?= base_url(); ?>assets/backend/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url(); ?>assets/backend/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="<?= base_url(); ?>assets/backend/bower_components/datatables/datatables.js"></script>
+  <script src="<?= base_url(); ?>assets/backend/bower_components/datatables/Buttons-1.6.1/js/buttons.print.min.js"></script>
   <div class="wrapper">

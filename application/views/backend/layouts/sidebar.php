@@ -2,7 +2,7 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
-    <div class="user-panel text-center">
+    <div class="user-panel text-center" style="margin-top:-50px;">
       <!-- <div class="pull-left image">
         <img src="<?= base_url(); ?>assets/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
       </div>
@@ -25,7 +25,25 @@
             <i class="fa fa-home"></i> <span>Home</span>
           </a>
         </li>
-        <li class="<?php if ($this->uri->segment(1) == 'data-guru' || $this->uri->segment(2) == 'add-guru') {
+        <li class="treeview <?php if ($this->uri->segment(1) == 'kelas' || $this->uri->segment(1) == 'mapel') {
+                              echo 'active';
+                            } ?>">
+          <a href="#">
+            <i class="glyphicon glyphicon-blackboard"></i> <span>KBM</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="<?php if ($this->uri->segment(1) == 'kelas') {
+                          echo 'active';
+                        } ?>"><a href="<?= site_url('kelas') ?>"><i class="fa fa-circle-o text-red"></i> Kelas</a></li>
+            <li class="<?php if ($this->uri->segment(1) == 'mapel') {
+                          echo 'active';
+                        } ?>"><a href="<?= site_url('mapel') ?>"><i class="fa fa-circle-o text-purple"></i> Mata Pelajaran</a></li>
+          </ul>
+        </li>
+        <li class="<?php if ($this->uri->segment(1) == 'data-guru' || $this->uri->segment(1) == 'add-guru') {
                       echo 'active';
                     } ?>">
           <a href="<?= site_url('data-guru'); ?>">
@@ -33,7 +51,7 @@
             <span>Data Guru</span>
           </a>
         </li>
-        <li class="<?php if ($this->uri->segment(1) == 'data-siswa' || $this->uri->segment(2) == 'add-siswa') {
+        <li class="<?php if ($this->uri->segment(1) == 'data-siswa') {
                       echo 'active';
                     } ?>">
           <a href="<?= site_url('data-siswa'); ?>">

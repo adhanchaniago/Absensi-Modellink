@@ -11,9 +11,9 @@
         <form action="<?= site_url('admin/DataGuru/saveGuru'); ?>" method="post" id="form-guru">
           <div class="box-body">
             <div class="form-group row">
-              <label for="nip" class=" col-sm-2">NIP</label>
+              <label for="nip" class=" col-sm-2">NIP/NUPTK</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP 18 digit">
+                <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP/NUPTK 16 digit">
               </div>
             </div>
             <div class="form-group row">
@@ -25,7 +25,8 @@
             <div class="form-group row">
               <label for="username" class=" col-sm-2">Username</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="username" placeholder="Username">
+                <input type="text" class="form-control" name="username" onblur="userNameAvail()" placeholder="Username">
+                <small class="uname"></small>
               </div>
             </div>
             <div class="form-group row">
@@ -46,11 +47,9 @@
               <div class="col-sm-10">
                 <select class="form-control" name="agama">
                   <option value="" selected hidden>--Pilih Agama--</option>
-                  <option value="1">Islam</option>
-                  <option value="2">Kristen Protestan</option>
-                  <option value="3">Katolik</option>
-                  <option value="4">Hindu</option>
-                  <option value="5">Budha</option>
+                  <?php foreach ($agama as $val) : ?>
+                    <option value="<?= $val->id_agama ?>"><?= $val->agama ?></option>
+                  <?php endforeach; ?>
                 </select>
               </div>
             </div>
@@ -61,7 +60,7 @@
               </div>
               <div class="col-sm-5">
                 <div class="input-group">
-                  <input type="text" class="form-control" id="lahirGuru" name="tanggal_lahir" placeholder="20-02-2020" readonly>
+                  <input type="text" class="form-control" id="lahirGuru" name="tanggal_lahir" placeholder="08-08-1998" readonly>
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
@@ -81,12 +80,22 @@
             <div class="form-group row">
               <label for="status" class=" col-sm-2">Status</label>
               <div class="container row">
-                <div class="col-sm-2">
-                  <input type="radio" name="status" value="PNS"> PNS
+                <div class="col-sm-4">
+                  <input type="radio" name="status" value="2"> PNS
+                  &nbsp;
+                  <input type="radio" name="status" vlaue="3"> Honorer
                 </div>
-                <div class="col-sm-2">
-                  <input type="radio" name="status" vlaue="Honorer"> Honorer
-                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="mapel" class=" col-sm-2">Mata Pelajaran</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="mapel">
+                  <option value="" selected hidden>--Pilih Mata Pelajaran--</option>
+                  <?php foreach ($mapel as $ma) : ?>
+                    <option value="<?= $ma->id_mapel; ?>"><?= $ma->nama_mapel ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
             <div class="form-group row">
@@ -110,41 +119,68 @@
 
 </section>
 <script>
-  $(function() {
-    //ajax save
-    $('#save').click(function() {
-      var data = new FormData($('#form-guru')[0]);
-      $.ajax({
-        type: 'post',
-        url: '<?= site_url('admin/DataGuru/saveGuru') ?>',
-        contentType: false,
-        processData: false,
-        dataType: 'json',
-        data: data,
-        success: function(data) {
-          console.log(data);
-          if (data.status == true) {
-            swal({
-              title: 'Tambah Guru',
-              text: 'Guru berhasil ditambahkan',
-              icon: 'success'
-            });
-          } else {
-            swal({
-              title: 'Gagal',
-              text: 'Tidak diketahui',
-              icon: 'error',
-              dangerMode: 'true'
-            })
-          }
+  //ajax save
+  $('#save').click(function() {
+    var data = new FormData($('#form-guru')[0]);
+    $.ajax({
+      type: 'post',
+      url: '<?= site_url('admin/DataGuru/saveGuru') ?>',
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+      data: data,
+      success: function(data) {
+        console.log(data);
+        if (data.status == true) {
+          swal({
+            title: 'Tambah Guru',
+            text: 'Guru berhasil ditambahkan',
+            icon: 'success'
+          });
+        } else {
+          swal({
+            title: 'Gagal',
+            text: 'Tidak diketahui',
+            icon: 'error',
+            dangerMode: 'true'
+          })
         }
+      }
 
-      })
     })
-
-    //pegawai borndate
-    $('#lahirGuru').datepicker({
-      format: "dd-mm-yyyy"
-    });
   })
+
+  //pegawai borndate
+  $('#lahirGuru').datepicker({
+    locale: {
+      format: "dd-mm-yyyy"
+    }
+  });
+
+  $("#nip").inputFilter(function(value) {
+    return /^\d*$/.test(value) && (value === "" || parseInt(value.length) <= 16);
+  });
+
+  function userNameAvail() {
+    var username = $('input[name="username"]').val();
+    $.ajax({
+      type: "post",
+      url: "<?= site_url('admin/DataGuru/unameValid') ?>",
+      data: {
+        username: username
+      },
+      success: function(response) {
+        if (username == '') {
+          $('.uname').html('<b><i style="color:red">Username wajib diisi</i></b>');
+        } else {
+          if (response == true) {
+            $('.uname').html('<b><i style="color:green">Username dapat digunakan</i></b>');
+          } else {
+            $('.uname').html('<b><i style="color:red">Username sudah terdaftar</i></b>');
+          }
+
+        }
+      }
+    });
+  }
 </script>

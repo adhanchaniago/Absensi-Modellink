@@ -56,6 +56,8 @@ $route['logout'] = 'auth/logout';
 
 //admin
 $route['admin'] = 'admin/home';
+$route['kelas'] = 'admin/kelas';
+$route['mapel'] = 'admin/mapel';
 $route['data-guru'] = 'admin/DataGuru';
 $route['add-guru'] = 'admin/DataGuru/addGuru';
 $route['data-siswa'] = 'admin/DataSiswa';
