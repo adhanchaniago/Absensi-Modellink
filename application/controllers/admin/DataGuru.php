@@ -105,11 +105,7 @@ class DataGuru extends CI_Controller
       $temp[] = htmlspecialchars($pegGuru->agama, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegGuru->tempat_lahir . ', ' . $pegGuru->tanggal_lahir, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegGuru->jenis_kelamin, ENT_QUOTES, 'UTF-8');
-      // $temp[] = htmlspecialchars($pegGuru->jenjang, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegGuru->status, ENT_QUOTES, 'UTF-8');
-      // $temp[] = htmlspecialchars($pegGuru->nik, ENT_QUOTES, 'UTF-8');
-      // $temp[] = htmlspecialchars($pegGuru->npwp, ENT_QUOTES, 'UTF-8');
-      // $temp[] = htmlspecialchars($pegGuru->email, ENT_QUOTES, 'UTF-8');
 
       // $temp[] = htmlspecialchars(date('d-m-Y / H:i', $pegGuru->submit_at), ENT_QUOTES, 'UTF-8');
       $temp[] = '

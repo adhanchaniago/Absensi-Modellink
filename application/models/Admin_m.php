@@ -24,11 +24,33 @@ class Admin_m extends CI_Model
     $this->db->delete('user');
   }
 
-  //Mapel
-  public function saveMapel($data)
+  /**
+   * Siswa
+   */
+  public function saveSiswa($data)
   {
-    $this->db->insert('mapel', $data);
+    $this->db->insert('siswa', $data);
     return $this->db->insert_id();
+  }
+
+  /**
+   * Hapus Siswa
+   */
+  public function hapusSiswa($id)
+  {
+    $this->db->where('id_siswa', $id);
+    $this->db->delete('siswa');
+  }
+
+  //nis
+  public function nisExist($nis)
+  {
+    $this->db->select('nis')
+      ->from('siswa')
+      ->where('nis', $nis);
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
   }
 
   public function usernameExist($username)
@@ -56,7 +78,6 @@ class Admin_m extends CI_Model
       $this->db->or_like('jenis_kelamin', $this->input->get('search')['value']);
       $this->db->or_like('nip', $this->input->get('search')['value']);
       $this->db->or_like('s.status', $this->input->get('search')['value']);
-      // $this->db->or_like('jenjang', $this->input->get('search')['value']);
     }
 
     if ($this->input->get('order')) {
@@ -81,6 +102,7 @@ class Admin_m extends CI_Model
   public function filtered()
   {
     self::queryGuru();
+    $this->db->where('tipe', 88);
     return $this->db->get()->num_rows();
   }
 
@@ -88,7 +110,55 @@ class Admin_m extends CI_Model
   {
     $this->db->from('user');
     $this->db->where('tipe', 88);
+    return $this->db->count_all_results();
+  }
 
+  /**
+   * Query Siswa
+   */
+  private function querySiswa()
+  {
+    $this->db->select('*');
+    $this->db->from('siswa s');
+    $this->db->join('agama a', 's.id_agama = a.id_agama');
+    $this->db->join('kelas k', 's.id_kelas = k.id_kelas');
+
+    if ($this->input->get('search')['value']) {
+      $this->db->like('nama', $this->input->get('search')['value']);
+      $this->db->or_like('tanggal_lahir', $this->input->get('search')['value']);
+      $this->db->or_like('jenis_kelamin', $this->input->get('search')['value']);
+      $this->db->or_like('no_hp', $this->input->get('search')['value']);
+      $this->db->or_like('a.agama', $this->input->get('search')['value']);
+    }
+
+    if ($this->input->get('order')) {
+      $this->db->order_by(
+        $this->input->get('order')['0']['column'],
+        $this->input->get('order')['0']['dir']
+      );
+    } else {
+      $this->db->order_by('s.id_siswa', 'desc');
+    }
+  }
+
+  public function dataSiswa()
+  {
+    self::querySiswa();
+    if ($this->input->get('length') !== -1) {
+      $this->db->limit($this->input->get('length'), $this->input->get('start'));
+    }
+    return $this->db->get()->result();
+  }
+
+  public function filteredSiswa()
+  {
+    self::querySiswa();
+    return $this->db->get()->num_rows();
+  }
+
+  public function countAllSiswa()
+  {
+    $this->db->from('siswa');
     return $this->db->count_all_results();
   }
 }

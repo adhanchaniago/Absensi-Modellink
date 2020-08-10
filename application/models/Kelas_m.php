@@ -24,6 +24,14 @@ class Kelas_m extends CI_Model
   }
 
   /**
+   * Get Kelas
+   */
+  public function getKelas()
+  {
+    return $this->db->get('kelas')->result();
+  }
+
+  /**
    * Datatables Query
    */
   private function queryKelas()
@@ -43,13 +51,14 @@ class Kelas_m extends CI_Model
         $this->input->get('order')['0']['dir']
       );
     } else {
-      $this->db->order_by('id_kelas', 'desc');
+      $this->db->order_by('k.id_kelas', 'desc');
     }
   }
 
   public function dataKelas()
   {
-    self::queryKelas();
+    $this->queryKelas();
+    // self::queryKelas();
     if ($this->input->get('length') !== -1) {
       $this->db->limit($this->input->get('length'), $this->input->get('start'));
     }
@@ -58,7 +67,8 @@ class Kelas_m extends CI_Model
 
   public function filtered()
   {
-    self::queryKelas();
+    $this->queryKelas();
+    // self::queryKelas();
     return $this->db->get()->num_rows();
   }
 

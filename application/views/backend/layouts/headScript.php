@@ -75,8 +75,6 @@ if ($userdataTipe == 77) {
   <script>
     $.widget.bridge('uibutton', $.ui.button);
   </script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="<?= base_url() ?>assets/backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- datepicker -->
   <script src="<?= base_url() ?>assets/backend/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="<?= base_url() ?>assets/backend/own/inputFilter.js"></script>
