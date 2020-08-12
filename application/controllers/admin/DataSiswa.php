@@ -86,11 +86,11 @@ class DataSiswa extends CI_Controller
           <i class="glyphicon glyphicon-chevron-down" style="color:#0073b7"></i>
         </a>
         <div class="dropdown-menu">
-          <li><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i>Jadikan Sekretaris</a></li>
-          <li><a role="menuitem" tabindex="-1" href="' . site_url('edit-Siswa/') . $pegSiswa->id_siswa . '" class="dropdown-item" data-toggle="tooltip" title="Detail" target="">
+          <li><a role="menuitem" tabindex="-1" href="javascript:void(0)" onclick="addSek(' . "'" . $pegSiswa->id_siswa . "'" . ')"><i class="fa fa-user"></i>Jadikan Sekretaris</a></li>
+          <li><a role="menuitem" tabindex="-1" href="' . site_url('edit-Siswa/') . $pegSiswa->id_siswa . '" data-toggle="tooltip" title="Detail" target="">
             <i class="fa fa-pencil" style="color:#f39c12"></i>Edit
           </a></li>
-          <li><a role="menuitem" tabindex="-1" href="javascript:void(0)" onclick="hapusSiswa(' . "'" . $pegSiswa->id_siswa . "'" . ')" class="dropdown-item" data-toggle="tooltip" title="Hapus" target="">
+          <li><a role="menuitem" tabindex="-1" href="javascript:void(0)" onclick="hapusSiswa(' . "'" . $pegSiswa->id_siswa . "'" . ')" data-toggle="tooltip" title="Hapus" target="">
              <i class="fa fa-trash" style="color:#ff0000"></i>Hapus
           </a></li>
         </div>      
@@ -116,6 +116,10 @@ class DataSiswa extends CI_Controller
     $output['data'] = $peg;
 
     echo json_encode($output);
+  }
+
+  public function makingSek()
+  {
   }
 
   public function hapusSiswa($id)

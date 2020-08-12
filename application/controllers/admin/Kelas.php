@@ -56,11 +56,11 @@ class Kelas extends CI_Controller
       $temp = [];
       $temp[] = htmlspecialchars($no++, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegKelas->kelas, ENT_QUOTES, 'UTF-8');
-      if ($pegKelas->id_user == 0) {
-        $temp[] = '<span class="badge "><i>' . htmlspecialchars('Belum Tersedia', ENT_QUOTES, 'UTF-8') . '</i></span>';
-      } else {
-        $temp[] = '<span class="badge bg-green"><i>' . htmlspecialchars($pegKelas->nama, ENT_QUOTES, 'UTF-8') . '</i></span>';
-      }
+      // if ($pegKelas->id_user == 0) {
+      //   $temp[] = '<span class="badge "><i>' . htmlspecialchars('Belum Tersedia', ENT_QUOTES, 'UTF-8') . '</i></span>';
+      // } else {
+      //   $temp[] = '<span class="badge bg-green"><i>' . htmlspecialchars($pegKelas->nama, ENT_QUOTES, 'UTF-8') . '</i></span>';
+      // }
       $temp[] = '
       <a href="' . site_url('edit-Kelas/') . $pegKelas->id_kelas . '" class="btn btn-default btn-sm" data-toggle="tooltip" title="Detail" target="">
           <i class="glyphicon glyphicon-pencil" style="color:#f39c12"></i>

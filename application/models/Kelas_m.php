@@ -38,11 +38,11 @@ class Kelas_m extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('kelas k');
-    $this->db->join('user u', 'k.id_user = u.id_user', 'left');
+    // $this->db->join('user u', 'k.id_user = u.id_user', 'left');
 
     if ($this->input->get('search')['value']) {
       $this->db->like('kelas', $this->input->get('search')['value']);
-      $this->db->or_like('u.nama', $this->input->get('search')['value']);
+      // $this->db->or_like('u.nama', $this->input->get('search')['value']);
     }
 
     if ($this->input->get('order')) {

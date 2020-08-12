@@ -72,7 +72,7 @@ class DataGuru extends CI_Controller
         'nip'           => $input['nip'],
         'nama'          => $input['nama'],
         'username'      => $input['username'],
-        'password'      => password_hash('nip', PASSWORD_DEFAULT),
+        'password'      => password_hash($input['nip'], PASSWORD_DEFAULT),
         'no_hp'         => $input['no_hp'],
         'alamat'        => $input['alamat'],
         'tempat_lahir' => $input['tempat_lahir'],

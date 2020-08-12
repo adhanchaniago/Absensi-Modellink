@@ -36,7 +36,7 @@
           <table class="table table-hover table-striped" style="width:100%" id="dataKelas">
             <thead>
               <th>No.</th>
-              <th>Kelas</th>
+              <!-- <th>Kelas</th> -->
               <th>Sekretaris</th>
               <th>Aksi</th>
             </thead>

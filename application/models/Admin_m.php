@@ -33,6 +33,10 @@ class Admin_m extends CI_Model
     return $this->db->insert_id();
   }
 
+  public function addSek()
+  {
+  }
+
   /**
    * Hapus Siswa
    */
