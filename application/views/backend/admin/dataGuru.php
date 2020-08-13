@@ -16,13 +16,14 @@
           <table class="table table-bordered table-hover nowrap" id="guru" style="width:100%">
             <thead>
               <th>No.</th>
+              <th>Username</th>
               <th>NIP</th>
               <th>Nama</th>
               <th>No.HP</th>
               <th>Alamat</th>
               <th>Agama</th>
               <th>TTL</th>
-              <th>Jenis Kelamin</th>
+              <th>Jenip Kelamin</th>
               <th>Status</th>
               <th>Aksi</th>
             </thead>

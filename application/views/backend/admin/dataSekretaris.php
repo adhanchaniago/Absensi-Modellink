@@ -98,6 +98,7 @@
   $(function() {
     $('#save').click(function() {
       var data = new FormData($('#form-sekretaris')[0]);
+      var kelas = $('[input="kelas"]').val();
       $.ajax({
         type: 'post',
         url: '<?= site_url('admin/DataSekretaris/saveSek') ?>',
@@ -121,7 +122,7 @@
               text: 'Periksa lagi',
               icon: 'error',
               dangerMode: 'true'
-            })
+            });
           }
         }
 
@@ -150,6 +151,32 @@
       // "targets": 0
     });
   });
+
+  function nisAvail() {
+    var nis = $('input[name="nis"]').val();
+    $.ajax({
+      type: "post",
+      url: "<?= site_url('admin/DataSekretaris/nisValid') ?>",
+      data: {
+        nis: nis
+      },
+      success: function(response) {
+        if (nis == '') {
+          $('.nis').html('<b><i style="color:red">Nis wajib diisi</i></b>');
+        } else {
+          if (nis.length < 10) {
+            $('.nis').html('<b><i style="color:red">Nis tidak lengkap</i></b>');
+          } else {
+            if (response == true) {
+              $('.nis').html('<b><i style="color:green">Nis dapat digunakan</i></b>');
+            } else {
+              $('.nis').html('<b><i style="color:red">Nis sudah terdaftar sebagai sekretaris</i></b>');
+            }
+          }
+        }
+      }
+    });
+  }
 
   function hapusSek(id) {
     swal({

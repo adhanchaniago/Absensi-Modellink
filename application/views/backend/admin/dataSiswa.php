@@ -101,6 +101,7 @@
         <thead>
           <th><i class="glyphicon glyphicon-chevron-left"></i><i class=" glyphicon glyphicon-chevron-right "></i></th>
           <th>No.</th>
+          <th>Kelas</th>
           <th>NIS</th>
           <th>Nama</th>
           <th>No. HP</th>

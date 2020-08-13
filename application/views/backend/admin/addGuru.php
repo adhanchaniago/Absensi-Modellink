@@ -13,7 +13,8 @@
             <div class="form-group row">
               <label for="nip" class=" col-sm-2">NIP/NUPTK</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP/NUPTK 16 digit">
+                <input type="text" class="form-control" name="nip" id="nip" onblur="nipAvail()" placeholder="NIP/NUPTK 18 digit">
+                <small class="nip"><i class="text-muted">Jika NUPTK kurang dari 18, tambahkan digit 0 di bagian depan.</i></small>
               </div>
             </div>
             <div class="form-group row">
@@ -158,7 +159,7 @@
   });
 
   $("#nip").inputFilter(function(value) {
-    return /^\d*$/.test(value) && (value === "" || parseInt(value.length) <= 16);
+    return /^\d*$/.test(value) && (value === "" || parseInt(value.length) <= 18);
   });
 
   function userNameAvail() {
@@ -177,6 +178,33 @@
             $('.uname').html('<b><i style="color:green">Username dapat digunakan</i></b>');
           } else {
             $('.uname').html('<b><i style="color:red">Username sudah terdaftar</i></b>');
+          }
+
+        }
+      }
+    });
+  }
+
+  function nipAvail() {
+    var nip = $('input[name="nip"]').val();
+    $.ajax({
+      type: "post",
+      url: "<?= site_url('admin/DataGuru/nipValid') ?>",
+      data: {
+        nip: nip
+      },
+      success: function(response) {
+        if (nip == '') {
+          $('.nip').html('<b><i style="color:red">Nip wajib diisi</i></b>');
+        } else {
+          if (nip.length < 10) {
+            $('.nip').html('<b><i style="color:red">Nip tidak lengkap</i></b>');
+          } else {
+            if (response == true) {
+              $('.nip').html('<b><i style="color:green">Nip dapat digunakan</i></b>');
+            } else {
+              $('.nip').html('<b><i style="color:red">Nip sudah terdaftar</i></b>');
+            }
           }
 
         }

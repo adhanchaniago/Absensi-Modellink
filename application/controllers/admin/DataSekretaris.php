@@ -30,14 +30,29 @@ class DataSekretaris extends CI_Controller
     ], FALSE);
   }
 
+  public function nisValid()
+  {
+    $nis = $this->input->post('nis');
+    $exists = $this->sekretaris_m->nisExist($nis);
+    $count = count($exists);
+    if (empty($count)) {
+      echo true;
+    } else {
+      echo false;
+    }
+  }
+
+
   public function saveSek()
   {
     $id = $this->session->userdata('id_user');
     $input = $this->input->post();
     $this->form_validation->set_rules('nis', 'NIS', 'required|min_length[10]|is_unique[user.nip]');
+    $this->form_validation->set_rules('kelas', 'Kelas', 'required|is_unique[user.id_kelas]');
     if (!$this->form_validation->run()) {
       $data = [
         'nis' => form_error('nis'),
+        'id_kelas' => form_error('id_kelas')
       ];
       echo json_encode(['status' => FALSE]);
     } else {

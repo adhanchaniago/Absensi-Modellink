@@ -57,6 +57,17 @@ class Admin_m extends CI_Model
     return $result;
   }
 
+  //nip
+  public function nipExist($nip)
+  {
+    $this->db->select('nip')
+      ->from('user')
+      ->where('nip', $nip);
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
+  }
+
   public function usernameExist($username)
   {
     $this->db->select('username')
@@ -74,7 +85,6 @@ class Admin_m extends CI_Model
     $this->db->join('status s', 'u.id_status = s.id_status');
     $this->db->join('agama a', 'u.id_agama = a.id_agama');
     $this->db->where('tipe', 88);
-
 
     if ($this->input->get('search')['value']) {
       $this->db->like('nama', $this->input->get('search')['value']);
@@ -122,10 +132,12 @@ class Admin_m extends CI_Model
    */
   private function querySiswa()
   {
+    $id_kelas = $this->session->userdata('id_kelas');
     $this->db->select('*');
     $this->db->from('siswa s');
     $this->db->join('agama a', 's.id_agama = a.id_agama');
     $this->db->join('kelas k', 's.id_kelas = k.id_kelas');
+    // $this->db->where('s.id_kelas', $id_kelas);
 
     if ($this->input->get('search')['value']) {
       $this->db->like('nama', $this->input->get('search')['value']);

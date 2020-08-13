@@ -12,6 +12,17 @@ class Sekretaris_m extends CI_Model
     return $this->db->insert_id();
   }
 
+  //nis
+  public function nisExist($nis)
+  {
+    $this->db->select('nip')
+      ->from('user')
+      ->where('nip', $nis);
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
+  }
+
   /**
    * Hapus Sekretaris
    */

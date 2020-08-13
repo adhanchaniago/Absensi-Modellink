@@ -96,6 +96,7 @@ class DataSiswa extends CI_Controller
         </div>      
       </div>';
       $temp[] = htmlspecialchars($no++, ENT_QUOTES, 'UTF-8');
+      $temp[] = htmlspecialchars($pegSiswa->kelas, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegSiswa->nis, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegSiswa->nama, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegSiswa->no_hp, ENT_QUOTES, 'UTF-8');

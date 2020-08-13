@@ -54,6 +54,18 @@ class DataGuru extends CI_Controller
     }
   }
 
+  public function nipValid()
+  {
+    $nip = $this->input->post('nip');
+    $exists = $this->admin_m->nipExist($nip);
+    $count = count($exists);
+    if (empty($count)) {
+      echo true;
+    } else {
+      echo false;
+    }
+  }
+
   public function saveGuru()
   {
     $id = $this->session->userdata('id_user');
@@ -61,6 +73,7 @@ class DataGuru extends CI_Controller
     // $getTanggal = explode('-', $input['tanggal_lahir']);
     // $pass = $getTanggal['0'] . $getTanggal['1'] . $getTanggal['2'];
     $this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]');
+    $this->form_validation->set_rules('nip', 'NIP', 'required|min_length[18]|is_unique[user.nip]');
     if ($this->form_validation->run() == FALSE) {
       $this->form_validation->set_message('is_unique', '%s sudah ada');
       echo json_encode(array('status' => FALSE));
@@ -73,6 +86,7 @@ class DataGuru extends CI_Controller
         'nama'          => $input['nama'],
         'username'      => $input['username'],
         'password'      => password_hash($input['nip'], PASSWORD_DEFAULT),
+        // 'password'      => $input['nip'],
         'no_hp'         => $input['no_hp'],
         'alamat'        => $input['alamat'],
         'tempat_lahir' => $input['tempat_lahir'],
@@ -84,6 +98,7 @@ class DataGuru extends CI_Controller
       ];
 
       $this->admin_m->saveGuru($data);
+      // var_dump($data);
       echo json_encode(['status' => TRUE]);
     }
   }
@@ -98,6 +113,7 @@ class DataGuru extends CI_Controller
       // $tgl = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
       $temp = [];
       $temp[] = htmlspecialchars($no++, ENT_QUOTES, 'UTF-8');
+      $temp[] = htmlspecialchars($pegGuru->username, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegGuru->nip, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegGuru->nama, ENT_QUOTES, 'UTF-8');
       $temp[] = htmlspecialchars($pegGuru->no_hp, ENT_QUOTES, 'UTF-8');
