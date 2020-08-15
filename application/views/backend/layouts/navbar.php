@@ -32,6 +32,7 @@
                                             echo 'Sekretaris';
                                           } ?>
                 <small>NIP. <?= $profile->nip; ?></small>
+                <small>Mapel : <?= $profile->nama_mapel; ?></small>
               </p>
             </li>
             <!-- Menu Footer-->

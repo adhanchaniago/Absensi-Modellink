@@ -85,6 +85,13 @@
             <i class="fa fa-home"></i> <span>Home</span>
           </a>
         </li>
+        <li class="<?php if ($this->uri->segment(2) == 'absensi') {
+                      echo 'active';
+                    } ?>">
+          <a href="<?= site_url('gr/absensi'); ?>">
+            <i class="fa fa-tags"></i> <span>Absensi</span>
+          </a>
+        </li>
         <li class="<?php if ($this->uri->segment(2) == 'data-siswa' || $this->uri->segment(3) == 'add-siswa') {
                       echo 'active';
                     } ?>">

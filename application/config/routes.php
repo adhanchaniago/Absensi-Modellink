@@ -50,6 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'auth';
+
 //auth
 $route['login'] = 'auth';
 $route['logout'] = 'auth/logout';
@@ -67,6 +68,7 @@ $route['data-rekap'] = 'admin/DataRekap';
 
 //guru
 $route['guru'] = 'guru/home';
+$route['gr/absensi'] = 'guru/absensi';
 $route['gr/data-siswa'] = 'guru/DataSiswa';
 $route['gr/add-siswa'] = 'guru/DataSiswa/addSiswa';
 $route['gr/data-sekretaris'] = 'guru/DataSekretaris';
