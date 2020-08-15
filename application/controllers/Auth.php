@@ -65,6 +65,7 @@ class Auth extends CI_Controller
     $data = [
       'id_user' => $valid['id_user'],
       'id_kelas' => $valid['id_kelas'],
+      'id_mapel' => $valid['id_mapel'],
       'nama' => $valid['nama'],
       'username' => $valid['username'],
       'tipe' => $valid['tipe'],

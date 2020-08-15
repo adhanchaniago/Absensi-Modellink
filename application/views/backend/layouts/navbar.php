@@ -32,7 +32,11 @@
                                             echo 'Sekretaris';
                                           } ?>
                 <small>NIP. <?= $profile->nip; ?></small>
+                <?php if($profile->id_mapel == 0) {?>
+                  
+                <?php }else{ ?>
                 <small>Mapel : <?= $profile->nama_mapel; ?></small>
+                <?php } ?>
               </p>
             </li>
             <!-- Menu Footer-->

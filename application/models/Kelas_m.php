@@ -28,6 +28,7 @@ class Kelas_m extends CI_Model
    */
   public function getKelas()
   {
+    $this->db->order_by('kelas', 'asc');
     return $this->db->get('kelas')->result();
   }
 
