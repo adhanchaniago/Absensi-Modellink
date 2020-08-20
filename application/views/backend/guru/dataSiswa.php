@@ -9,7 +9,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <table class="table table-hover table-striped" id="dataSiswa">
+      <table class="table table-hover table-striped" id="dataSiswa" style="width: 100%;">
         <thead>
           <th>Aksi</th>
           <th>No.</th>
@@ -19,8 +19,8 @@
           <th>No. HP</th>
           <th>Alamat</th>
           <th>Agama</th>
-          <th>Tempat Lahir</th>
-          <th>Tanggal Lahir</th>
+          <th>TTL</th>
+          <!-- <th>Tanggal Lahir</th> -->
           <th>Jenis Kelamin</th>
         </thead>
       </table>
@@ -43,7 +43,7 @@
       "processing": true,
       "serverSide": true,
       // "scrollX": true,
-      "scrollY": "200px",
+      // "scrollY": "200px",
       "order": [],
       "ajax": {
         url: "<?= site_url('guru/DataSiswa/getSiswa') ?>",
@@ -61,6 +61,8 @@
         // "width": "10%",
         // "targets": 8
       }],
+
+      responsive: true
     });
   });
 </script>

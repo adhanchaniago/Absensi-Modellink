@@ -135,8 +135,8 @@ class Admin_m extends CI_Model
     $id_kelas = $this->session->userdata('id_kelas');
     $this->db->select('*');
     $this->db->from('siswa s');
-    $this->db->join('agama a', 's.id_agama = a.id_agama');
-    $this->db->join('kelas k', 's.id_kelas = k.id_kelas');
+    $this->db->join('agama a', 's.id_agama = a.id_agama', 'left');
+    $this->db->join('kelas k', 's.id_kelas = k.id_kelas', 'left');
     // $this->db->where('s.id_kelas', $id_kelas);
 
     if ($this->input->get('search')['value']) {
@@ -153,7 +153,7 @@ class Admin_m extends CI_Model
         $this->input->get('order')['0']['dir']
       );
     } else {
-      $this->db->order_by('s.id_siswa', 'desc');
+      $this->db->order_by('k.kelas', 'asc');
     }
   }
 

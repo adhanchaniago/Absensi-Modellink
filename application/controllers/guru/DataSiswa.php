@@ -34,8 +34,6 @@ class DataSiswa extends CI_Controller
     $peg = [];
     $no = 1;
     foreach ($data as $pegSiswa) {
-      $explode = explode('-', $pegSiswa->tanggal_lahir);
-      // $tgl = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
       $temp = [];
       $temp[] = '
       <div class="dropdown">
