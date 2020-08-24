@@ -39,6 +39,10 @@ if ($userdataTipe == 77) {
   <link rel="stylesheet" href="<?= base_url() ?>assets/backend/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/backend/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/jQueryMonth/demo/MonthPicker.css"> -->
+  <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/backend/bower_components/jquery-ui/jquery-ui.css"> -->
+
   <!-- Daterange picker -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/backend/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
@@ -70,7 +74,11 @@ if ($userdataTipe == 77) {
   <!-- jQuery 3 -->
   <script src="<?= base_url() ?>assets/backend/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
+  <!-- <script src="<?= base_url() ?>assets/backend/bower_components/jquery-ui/jquery-1.12.1.min.js"></script> -->
   <script src="<?= base_url() ?>assets/backend/bower_components/jquery-ui/jquery-ui.min.js"></script>
+  <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+  <!-- <script src="https://cdn.rawgit.com/digitalBush/jquery.maskedinput/1.4.1/dist/jquery.maskedinput.min.js"></script> -->
+
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button);
@@ -80,6 +88,7 @@ if ($userdataTipe == 77) {
   <script src="<?= base_url() ?>assets/backend/own/inputFilter.js"></script>
   <script src="<?= base_url() ?>assets/backend/own/jquery.validation.js"></script>
   <script src="<?= base_url() ?>assets/backend/own/additional-methods.js"></script>
+  <!-- <script src="<?= base_url() ?>assets/backend/plugins/jQueryMonth/src/MonthPicker.js"></script> -->
   <!-- Datatables -->
   <script src="<?= base_url(); ?>assets/backend/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="<?= base_url(); ?>assets/backend/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
