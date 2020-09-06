@@ -47,6 +47,10 @@ class Absensi extends CI_Controller
         'id_mapel' => $input['id_mapel'],
         'id_kelas' => $input['id_kelas'],
         'time_in' => time(),
+        'tanggal' => date("d"),
+        'bulan' => date("m"),
+        // 'bulan' => '10',
+        'tahun' => date("Y"),
         'keterangan' => $input['keterangan'][$key]
       ];
       // $index++;

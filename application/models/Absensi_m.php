@@ -1,25 +1,83 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Absensi_m Class
+ * 
+ * Class untuk mengatur data alternatif
+ *
+ * @package		absensi
+ * @subpackage	Model
+ * @category	Absensi_m
+ * @author  	Fitri
+ */
+
 class Absensi_m extends CI_Model
 {
-  public function getAbsen($kelas, $mapel)
+  /**
+   * Minimal Limit
+   */
+  const MIN_LIMIT = 1;
+
+  /**
+   * Instansiasi variable $db
+   * 
+   * @var object
+   */
+  private static $db;
+
+  /**
+   * Instansiasi variable input
+   * 
+   * @var array
+   */
+  private static $input;
+
+  /**
+   * Magic constructor
+   */
+  public function __construct()
   {
-    // $this->db->select('(SELECT id_absensi, COUNT(*) AS total, 
-    //                   COUNT(case when keterangan = "Sakit" then 1 else 0 end) AS s,
-    //                   COUNT(case when keterangan = "Alpha" then 1 else 0 end) AS a,
-    //                   COUNT(case when keterangan = "Ijin" then 1 else 0 end) AS i
-    //                   FROM absensi)');
-    $this->db->select('*');
-    $this->db->from('absensi');
-    $where = ['id_kelas' => $kelas, 'id_mapel' => $mapel];
-    $this->db->where($where);
-    return $this->db->get()->result();
+    parent::__construct();
+
+    /**
+     * Set value varible $db
+     * @var object
+     */
+    self::$db = &get_instance()->db;
+
+    /**
+     * Set value varible $input
+     * @var array
+     */
+    self::$input = &get_instance()->input;
   }
 
-  public function getTanggal($tgl)
+  public function getAbsen($kelas, $mapel, $bulan)
   {
-    return $this->db->get_where('absensi', $tgl)->result();
+    if ($kelas == NULL && $mapel == NULL) {
+      return static::$db->query("SELECT id_siswa, tanggal, bulan, tahun, id_kelas, id_mapel, time_in, keterangan,
+                        COUNT(IF(keterangan='Sakit', 1, NULL)) as tSakit,
+                        COUNT(IF(keterangan='Alpha', 1, NULL)) as tAlpha,
+                        COUNT(IF(keterangan='Ijin', 1, NULL)) as tIjin,
+                        COUNT(IF(keterangan='Hadir', 1, NULL)) as tHadir
+                        FROM absensi")->result();
+    } else {
+      return static::$db->query("SELECT id_siswa, tanggal, bulan, tahun, id_kelas, id_mapel, time_in, keterangan,
+                        COUNT(IF(keterangan='Sakit', 1, NULL)) as tSakit,
+                        COUNT(IF(keterangan='Alpha', 1, NULL)) as tAlpha,
+                        COUNT(IF(keterangan='Ijin', 1, NULL)) as tIjin,
+                        COUNT(IF(keterangan='Hadir', 1, NULL)) as tHadir
+                        FROM absensi
+    WHERE (id_kelas = " . $kelas . " AND id_mapel = " . $mapel . " AND bulan IN ('08', '09', '10'))")->result();
+    }
+  }
+
+  public function getBulan($kelas, $mapel)
+  {
+    $where = ['id_kelas' => $kelas, 'id_mapel' => $mapel];
+    $this->db->group_by('bulan');
+    return $this->db->get_where('absensi', $where)->result();
   }
 }
 
