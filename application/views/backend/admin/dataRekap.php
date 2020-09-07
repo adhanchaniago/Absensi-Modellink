@@ -68,6 +68,7 @@
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs pull-right">
             <li class="pull-left header"><i class="fa fa-users"></i> Data Rekap Absensi</li>
+            <li class="pull-right header"><a class="btn btn-success"><i class="fa fa-print"></i> Cetak</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active">
