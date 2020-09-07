@@ -55,6 +55,10 @@ class Absensi_m extends CI_Model
 
   public function getAbsen($kelas, $mapel, $bulan)
   {
+    $string = "08,09,10";
+    $array = array_map('intval', explode(',', $string));
+    $array = implode("','", $array);
+    var_dump($array);
     if ($kelas == NULL && $mapel == NULL) {
       return static::$db->query("SELECT id_siswa, tanggal, bulan, tahun, id_kelas, id_mapel, time_in, keterangan,
                         COUNT(IF(keterangan='Sakit', 1, NULL)) as tSakit,
@@ -69,7 +73,7 @@ class Absensi_m extends CI_Model
                         COUNT(IF(keterangan='Ijin', 1, NULL)) as tIjin,
                         COUNT(IF(keterangan='Hadir', 1, NULL)) as tHadir
                         FROM absensi
-    WHERE (id_kelas = " . $kelas . " AND id_mapel = " . $mapel . " AND bulan IN ('08', '09', '10'))")->result();
+    WHERE (id_kelas = " . $kelas . " AND id_mapel = " . $mapel . " AND bulan IN ('".$array."'))")->result();
     }
   }
 
