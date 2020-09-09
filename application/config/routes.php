@@ -80,5 +80,8 @@ $route['sk/data-siswa'] = 'sekretaris/DataSiswa';
 $route['sk/add-siswa'] = 'sekretaris/DataSiswa/addSiswa';
 $route['sk/data-rekap'] = 'sekretaris/DataRekap';
 
+//cetakRekap
+$route['cetak-rekap'] = 'CetakRekap';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

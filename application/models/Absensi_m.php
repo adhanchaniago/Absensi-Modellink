@@ -60,7 +60,7 @@ class Absensi_m extends CI_Model
     $array = implode("','", $array);
     var_dump($array);
     if ($kelas == NULL && $mapel == NULL) {
-      return static::$db->query("SELECT id_siswa, tanggal, bulan, tahun, id_kelas, id_mapel, time_in, keterangan,
+      return static::$db->query("SELECT 
                         COUNT(IF(keterangan='Sakit', 1, NULL)) as tSakit,
                         COUNT(IF(keterangan='Alpha', 1, NULL)) as tAlpha,
                         COUNT(IF(keterangan='Ijin', 1, NULL)) as tIjin,
@@ -82,6 +82,41 @@ class Absensi_m extends CI_Model
     $where = ['id_kelas' => $kelas, 'id_mapel' => $mapel];
     $this->db->group_by('bulan');
     return $this->db->get_where('absensi', $where)->result();
+  }
+
+  //kode tambahan
+  public function getLaporanPerKelas($kelas, $mapel){
+
+
+    $this->db->distinct('keterangan');
+    // $this->db->select('count(keterangan == "sakit") as jmlketerangansakit, keterangan, bulan,tahun');
+    // $this->db->where(array('id_kelas' => $kelas, 'id_mapel' => $mapel, 'keterangan !='=>"Hadir"));
+    // $this->db->group_by(array("bulan", "tahun", "keterangan"));
+    // return $this->db->get('absensi')->result();
+
+
+    $this->db->select("count(case when keterangan = 'Sakit' then 1 else null end) as tSakit,
+                        count(case when keterangan = 'Ijin' then 1 else null end) as tIjin,
+                        count(case when keterangan = 'Alpha' then 1 else null end) as tAlpha,bulan,tahun");
+    
+    $this->db->where(array('id_kelas' => $kelas, 'id_mapel' => $mapel, 'keterangan !='=>"Hadir"));
+    $this->db->group_by(array("bulan", "tahun"));
+    return $this->db->get('absensi')->result();
+
+  }
+  //end kode tambahan
+
+  //cetak rekap
+  public function kelas($kelas){
+    $this->db->where('id_kelas', $kelas);
+    return $this->db->get('kelas')->row();
+    
+  }
+
+  public function mapel($mapel){
+    $this->db->where('id_mapel', $mapel);
+    return $this->db->get('mapel')->row();
+    
   }
 }
 

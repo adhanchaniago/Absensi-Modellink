@@ -8,6 +8,7 @@ class User_m extends CI_Model
     $this->db->select('*');
     $this->db->from('user u');
     $this->db->join('mapel m', 'u.id_mapel = m.id_mapel', 'left');
+    $this->db->join('kelas k', 'u.id_kelas = k.id_kelas', 'left');
     $this->db->where('u.id_user', $id);
     return $this->db->get()->row();
   }

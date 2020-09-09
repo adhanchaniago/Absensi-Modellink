@@ -14,7 +14,17 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="<?= base_url(); ?>assets/backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs"><?= $profile->username; ?></span>
+            <span class="hidden-xs"><?php if ($profile->tipe == 99) {
+                                            echo $profile->username;
+
+                                          }
+                                          if ($profile->tipe == 88) {
+                                            echo $profile->username;
+
+                                          }
+                                          if ($profile->tipe == 77) {
+                                            echo $profile->nama;
+                                          } ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -24,15 +34,20 @@
               <p>
                 <?= $profile->nama; ?> - <?php if ($profile->tipe == 99) {
                                             echo 'Admin';
+                                            echo '<small>NIP.'.$profile->nip.'</small>';
+
                                           }
                                           if ($profile->tipe == 88) {
                                             echo 'Guru';
+                                            echo '<small>NIP.'.$profile->nip.'</small>';
+                                            echo '<small>Mapel : ' . $profile->nama_mapel . '</small>';
+
                                           }
                                           if ($profile->tipe == 77) {
                                             echo 'Sekretaris';
+                                            echo '<small>NIS.'.$profile->nip.'</small>';
+                                            echo '<small>Mapel : ' . $profile->kelas . '</small>';
                                           } ?>
-                <small>NIP. <?= $profile->nip; ?></small>
-                <?= $profile->id_mapel == 0 ? '' : '<small>Mapel : ' . $profile->nama_mapel . '</small>' ?>
               </p>
             </li>
             <!-- Menu Footer-->

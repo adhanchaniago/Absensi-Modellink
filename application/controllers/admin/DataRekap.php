@@ -21,20 +21,17 @@ class DataRekap extends CI_Controller
     $id = $this->session->userdata('id_user');
     $kelas = $this->input->post('kelas');
     $mapel = $this->input->post('mapel');
-    $bulan = $this->absensi_m->getBulan($kelas, $mapel);
-    // foreach ($bulan as $val) {
-    //   $bulan = $val->bulan;
-    //   // var_dump($bulan);
-    // }
     $data = [
       'content' => 'backend/admin/dataRekap',
       'title'   => 'Rekap Bulanan',
       'profile' => $this->user_m->profile($id),
       'userdata' => $id,
-      'absensi' => $this->absensi_m->getAbsen($kelas, $mapel, $bulan),
+      'absensi' => $this->absensi_m->getLaporanPerKelas($kelas, $mapel),
       'bulan' => $this->absensi_m->getBulan($kelas, $mapel),
       'kelas' => $this->kelas_m->getKelas(),
       'mapel' => $this->mapel_m->getMapel(),
+      'kelask' => $kelas,
+      'mapelk' => $mapel
     ];
     $this->load->view('backend/layouts/wrapper', $data, FALSE);
     // die();

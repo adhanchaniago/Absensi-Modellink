@@ -1,21 +1,14 @@
-<style>
-  .datepicker {
-    z-index: 9999 !important;
-    /* position: relative !important; */
-  }
-</style>
-<form method="post">
-  <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Custom Tabs (Pulled to the right) -->
-        <div class="nav-tabs-custom">
-          <ul class="nav nav-tabs pull-right">
-            <li class="pull-left header"><i class="fa fa-th"></i> Kelas</li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active">
-
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Custom Tabs (Pulled to the right) -->
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs pull-right">
+          <li class="pull-left header"><i class="fa fa-th"></i> Kelas</li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <form method="post">
               <center>
                 <b>Rekap Absen</b>
                 <p class="text-muted">Pilih kelas</p>
@@ -50,30 +43,32 @@
                 <button class="btn btn-success">Pilih</button>
                 <a href="<?= site_url('data-rekap'); ?>" class="btn btn-warning">Reset</a>
               </center>
-
-            </div>
-            <!-- /.tab-pane -->
+            </form>
           </div>
-          <!-- /.tab-content -->
+          <!-- /.tab-pane -->
         </div>
-        <!-- nav-tabs-custom -->
+        <!-- /.tab-content -->
       </div>
+      <!-- nav-tabs-custom -->
+    </div>
 
-      <!-- <?php foreach ($absensi as $val) :
-              echo date("M", $val->time_in);
-              echo $val->keterangan;
-            endforeach; ?> -->
+    <!-- <?php foreach ($absensi as $val) :
+            echo date("M", $val->time_in);
+            echo $val->keterangan;
+          endforeach; ?> -->
+    <form method="post" action="<?= site_url('cetak-rekap');?>">
       <div class="col-md-12">
         <!-- Custom Tabs (Pulled to the right) -->
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs pull-right">
             <li class="pull-left header"><i class="fa fa-users"></i> Data Rekap Absensi</li>
-            <li class="pull-right header"><a class="btn btn-success"><i class="fa fa-print"></i> Cetak</a></li>
+            <?php if($_SERVER['REQUEST_METHOD'] === 'POST') :?>
+            <li class="pull-right header"><button class="btn btn-success btn-sm" formtarget="_blank"><i class="fa fa-print"></i> Cetak</button></li>
+            <?php endif;?>
           </ul>
-          <div class="tab-content">
-            <div class="tab-pane active">
-              <form action="" method="post" id="absen">
-                <table class="table table-hover table-striped">
+        <div class="tab-content">
+          <div class="tab-pane active">
+                <table class="table table-hover table-striped" style="width:100%">
                   <thead>
                     <th>Bulan/Tahun</th>
                     <!-- <th>NIS</th> -->
@@ -85,21 +80,22 @@
                   </thead>
                   <?php if ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
                     <tbody>
+
                       <?php
-                      foreach ($bulan as $b) : ?>
+                      foreach ($absensi as $val) :
+                        $tot = $val->tSakit + $val->tIjin + $val->tAlpha;
+                      ?>
+                        <input type="hidden" name="kelas" value="<?= $kelask ?>">
+                        <input type="hidden" name="mapel" value="<?= $mapelk ?>">
                         <tr>
-                          <?php
-                          foreach ($absensi as $val) :
-                            $tot = $val->tSakit + $val->tIjin + $val->tAlpha;
-                          ?>
-                            <td><?= $b->bulan . '/' . $b->tahun; ?></td>
-                            <td><?= $val->tSakit; ?></td>
-                            <td><?= $val->tIjin; ?></td>
-                            <td><?= $val->tAlpha; ?></td>
-                            <td><?= $tot; ?></td>
-                          <?php endforeach; ?>
+                          <td><?= $val->bulan . '/' . $val->tahun; ?></td>
+                          <td><?= $val->tSakit; ?></td>
+                          <td><?= $val->tIjin; ?></td>
+                          <td><?= $val->tAlpha; ?></td>
+                          <td><?= $tot; ?></td>
                         </tr>
                       <?php endforeach; ?>
+
                     </tbody>
                   <?php } else { ?>
                     <tbody>
@@ -117,7 +113,6 @@
 
                 <!-- <button class="btn btn-primary" disabled>Kirim Absensi</button> -->
 
-              </form>
             </div>
             <!-- /.tab-pane -->
           </div>
@@ -125,7 +120,7 @@
         </div>
         <!-- nav-tabs-custom -->
       </div>
+    </form>
 
-    </div>
-  </section>
-</form>
+  </div>
+</section>
