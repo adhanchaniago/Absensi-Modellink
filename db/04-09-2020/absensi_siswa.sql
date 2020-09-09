@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2020 at 06:29 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Generation Time: Sep 06, 2020 at 05:41 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -57,11 +58,7 @@ INSERT INTO `absensi` (`id_absensi`, `id_siswa`, `id_mapel`, `id_kelas`, `time_i
 (79, 7, 1, 2, 1599188540, '04', '10', '2020', 'Sakit'),
 (80, 8, 1, 2, 1599188540, '04', '10', '2020', 'Alpha'),
 (81, 9, 1, 2, 1599188540, '04', '10', '2020', 'Ijin'),
-(82, 10, 1, 2, 1599188540, '04', '10', '2020', 'Ijin'),
-(83, 7, 4, 2, 1599569967, '08', '09', '2020', 'Sakit'),
-(84, 8, 4, 2, 1599569967, '08', '09', '2020', 'Sakit'),
-(85, 9, 4, 2, 1599569967, '08', '09', '2020', 'Alpha'),
-(86, 10, 4, 2, 1599569967, '08', '09', '2020', 'Sakit');
+(82, 10, 1, 2, 1599188540, '04', '10', '2020', 'Ijin');
 
 -- --------------------------------------------------------
 
@@ -229,7 +226,7 @@ INSERT INTO `user` (`id_user`, `id_mapel`, `id_kelas`, `id_agama`, `id_status`, 
 (18, 0, 1, 0, 4, '0987557898', 'ertyui', '0987557898', '$2y$10$DWQq8zw3jkXO0E7NtlYuAulL/wlyJJ6oQ0B8DjYhY9N01.AI1fB9e', '0987654321', '', '', NULL, 'Perempuan', NULL, 77, 1597210865),
 (26, 1, 0, 3, 2, '190172652551550011', 'Mama', 'mama', '$2y$10$91TfhRvJzHqwpuPxF.0QSeqLrs367vsQ1Y9snHMAhD/Fmlegm79Pm', '09876537', 'skdhkshd', 'sdsfa', '08/17/2020', 'Perempuan', NULL, 88, 1597289596),
 (27, 4, 0, 3, 2, '098765456789876567', 'Dimas', 'dimas', '$2y$10$TjzM.0htCRMplcsgie9e1eO/c.G2clbeC4ogcjHSnDvg8h/mbUoIS', '0987654356', 'Jl. Pepaya', 'Surabaya', '07/30/2020', 'Laki-laki', NULL, 88, 1597944159),
-(29, 0, 2, 0, 4, '4554345465', 'Yati', '4554345465', '$2y$10$SlgptbWlsqZXNoq.jgAR1O0O2FIUknsfk35xbr42b01V13axkbKyS', '0976547654', '', '', NULL, 'Perempuan', NULL, 77, 1599573341);
+(28, 0, 2, 0, 4, '0986567898', 'Cindut', '0986567898', '$2y$10$SsfIEEHDPZvNujV2D8LZJebs8n09aaVNasDI7hVvGE9SGvApjg2/K', '098765476', '', '', NULL, 'Perempuan', NULL, 77, 1598152756);
 
 --
 -- Indexes for dumped tables
@@ -298,7 +295,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `agama`
@@ -340,7 +337,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
