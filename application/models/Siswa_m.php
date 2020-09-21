@@ -54,6 +54,18 @@ class Siswa_m extends CI_Model
     return $this->db->count_all_results();
   }
 
+  public function getDataSiswa($id_siswa){
+    $this->db->select('*');
+    $this->db->from('siswa');
+    $this->db->where('id_siswa', $id_siswa);
+   return $this->db->get()->row();
+  }
+
+  public function saveEditSiswa($data, $id_siswa){
+    return $this->db->replace('siswa', $data, $id_siswa);
+    
+  }
+
   public function getSiswa($id_kelas)
   {
     $this->db->select('*');

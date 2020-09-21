@@ -62,6 +62,7 @@ $route['mapel'] = 'admin/mapel';
 $route['data-guru'] = 'admin/DataGuru';
 $route['add-guru'] = 'admin/DataGuru/addGuru';
 $route['data-siswa'] = 'admin/DataSiswa';
+$route['edit-siswa/(:any)'] = 'admin/DataSiswa/editSiswa/$1';
 $route['add-siswa'] = 'admin/DataSiswa/addSiswa';
 $route['data-sekretaris'] = 'admin/DataSekretaris';
 $route['data-rekap'] = 'admin/DataRekap';

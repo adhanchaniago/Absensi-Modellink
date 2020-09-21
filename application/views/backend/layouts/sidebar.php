@@ -51,7 +51,7 @@
             <span>Data Guru</span>
           </a>
         </li>
-        <li class="<?php if ($this->uri->segment(1) == 'data-siswa') {
+        <li class="<?php if ($this->uri->segment(1) == 'data-siswa' || $this->uri->segment(1) == 'edit-siswa') {
                       echo 'active';
                     } ?>">
           <a href="<?= site_url('data-siswa'); ?>">
